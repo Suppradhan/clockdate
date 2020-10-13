@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+ <head>
+	<title> Digital Clock</title>
+	<style type="text/css">
+	body{
+		background: #FFB6C1;
+	}
+	.but{
+	  position: absolute;
+	  top:45%;
+	  left:34%;
+	  color: #8B008B;
+	  font-size: 20px;
+	  border: 2px solid #ffffff;
+	}
+	.clock{
+		position: absolute;
+		top:20%;
+		left: 30%;
+		transform: translateX(-70%) translateY(-50%)
+		color: #000;
+		font-size: 100px;
+		border: 5px solid #ffffff;
+		padding: 0px 5px 0px 5px;
+	}
+</style>
+ </head>
+<body>
+<div id="Clock" class="clock"></div>
+<script type="text/javascript">
+	function displayDate()
+	{
+		document.getElementById("showDate").innerHTML = Date();
+		var x = document.getElementById("showDate");
+		if(x.style.display === "none")
+		{
+			x.style.display = "block";
+
+		}
+		else {
+			x.style.display = "none";
+		}
+	}
+
+function showTime()
+{
+	var date = new Date();
+	var h = date.getHours();
+	var m = date.getMinutes();
+	var s = date.getSeconds();
+	var session = "AM"
+	if(h==0){
+		h=12;
+	}
+	if(h>12){
+		h=h-12;
+		session = "PM"
+	}
+	h= (h<10) ? "0"+ h : h;
+	m= (m<10) ? "0"+ m : m;
+	s= (s<10) ? "0"+ s : s;
+	var time = h + ":" + m + ":"+ s + " " + session;
+	document.getElementById("Clock").innerText = time;
+    document.getElementById("Clock").TextContent = time;
+    setTimeout(showTime, 1000);
+}
+showTime();
+</script>
+<button type= "button" onclick="displayDate()">Show/Hide Date</button>
+<div id ="showDate" class="but"></div>
+</body>
+</html> 
